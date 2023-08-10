@@ -42,4 +42,6 @@ class PageController extends Controller
         Session::flash('success', 'Berhasil menambahkan buku');
         return redirect('/');
     }
+
+    public function editBook(Book $book) {}
 }
