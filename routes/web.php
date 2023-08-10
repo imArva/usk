@@ -35,6 +35,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/add-book', [PageController::class, 'addBook']);
     Route::post('/add-book', [PageController::class, 'actionAddBook']);
+
+    Route::get('/book/{book}/edit', [PageController::class, 'editBook']);
+    Route::post('/book/edit', [PageController::class, 'actionEditBook']);
+
+    Route::get('/book/{id}/delete', [PageController::class, 'deleteBook']);
 });
 
 
