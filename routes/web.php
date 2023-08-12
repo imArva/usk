@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookController;
+use  App\Http\Controllers\MemberController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [PageController::class, 'home']);
-Route::view('/la', 'addbook');
 
 Route::middleware('guest')->group(function () {
 
@@ -31,15 +32,20 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
-    Route::get('/book/{book}', [PageController::class, 'showBook']);
+    Route::get('/book/{book}', [BookController::class, 'showBook']);
 
-    Route::get('/add-book', [PageController::class, 'addBook']);
-    Route::post('/add-book', [PageController::class, 'actionAddBook']);
+    Route::get('/add-book', [BookController::class, 'addBook']);
+    Route::post('/add-book', [BookController::class, 'actionAddBook']);
 
-    Route::get('/book/{book}/edit', [PageController::class, 'editBook']);
-    Route::post('/book/edit', [PageController::class, 'actionEditBook']);
+    Route::get('/book/{book}/edit', [BookController::class, 'editBook']);
+    Route::post('/book/edit', [BookController::class, 'actionEditBook']);
 
-    Route::get('/book/{id}/delete', [PageController::class, 'deleteBook']);
+    Route::get('/book/{id}/delete', [BookController::class, 'deleteBook']);
+    
+    Route::get('/members',  [MemberController::class, 'showMembers']);
+    Route::get('/member/{user}', [MemberController::class, 'showMember']);
+
+    Route::get('/add-member', [MemberController::class, 'addMember']);
 });
 
 

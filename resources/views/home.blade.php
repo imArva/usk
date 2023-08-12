@@ -22,6 +22,17 @@
             @if (session('success'))
                 <p>{{ session('success') }}</p>
             @endif
+
+            <form action="" method="get">
+                Search :
+                <input type="text" placeholder="Search..." name="q">
+                <input type="submit">
+            </form>
+
+            @if (request()->has('q'))
+                <p>Hasil pencarian untuk <b>{{ request('q') }}</b></p>
+            @endif
+
             <ul>
                 @foreach ($books as $book)
                     <div style="display: flex">
@@ -30,12 +41,18 @@
                     </div>
                 @endforeach
             </ul>
+            
+            @if (request()->has('q'))
+                <a href="/">Back to home</a>
+                <br><br>
+            @endif
 
             @if (auth()->user()->isAdmin)
                 <a href="/add-book">Tambah buku</a>
 
-                <br>
-                <br>
+                <br><br>
+                <a href="/members">Lihat member</a>
+                <br><br>
             @endif
 
             <a href="/logout">Logout</a>

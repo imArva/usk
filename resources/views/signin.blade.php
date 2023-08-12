@@ -25,6 +25,8 @@
         <br>
 
         <input type="submit">
+
+        <a href="/signup">No have account?</a>
     </form>
 </body>
 </html>
