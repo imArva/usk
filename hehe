@@ -1,1 +1,17 @@
 http://lnkiy.in/emotemot
+
+@foreach ($buku as $b)
+    <p>{{ $b->nama }} memiliki {{ $b->detailbuku_count }} detail buku.</p>
+@endforeach
+
+$buku = Buku::withCount(['detailbuku' => function ($query) {
+    $query->where('f_status', 'Tersedia');
+}])->paginate(10);
+
+
+$buku = Buku::withCount('detailbuku')->paginate(10);
+
+public function detailbuku()
+    {
+        return $this->hasMany(DetailBuku::class, 'f_idbuku');
+    }
