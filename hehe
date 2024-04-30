@@ -8,6 +8,10 @@ $buku = Buku::withCount(['detailbuku' => function ($query) {
     $query->where('f_status', 'Tersedia');
 }])->paginate(10);
 
+$bukus = Buku::withCount(['detailbuku' => function ($query) {
+    $query->where('f_status', 'Tersedia');
+}])->paginate(10);
+
 
 $buku = Buku::withCount('detailbuku')->paginate(10);
 
